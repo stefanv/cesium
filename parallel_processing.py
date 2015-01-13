@@ -231,9 +231,12 @@ def pred_featurize_reduce(iter, params):
                 custom_script_path=custom_features_script,
                 path_to_csv=None, 
                 features_already_known=dict(
-                    timeseries_features.items() + science_features.items() + 
-                    meta_features.items()),
+                    list(timeseries_features.items()) + list(science_features.items()) + 
+                    list(meta_features.items())),
                 ts_data=deepcopy(ts_data))
+            if (type(custom_features) == list and 
+                len(custom_features) == 1):
+                    custom_features = custom_features[0]
         else:
             custom_features = {}
         
@@ -343,10 +346,13 @@ def featurize_reduce(iter, params):
                     custom_script_path=params['custom_script_path'],
                     path_to_csv=path_to_csv,
                     features_already_known=dict(
-                        timeseries_features.items() +
-                        science_features.items() +
-                        (params['meta_features'][fname].items() if
-                         fname in params['meta_features'] else {}.items())))
+                        list(timeseries_features.items()) +
+                        list(science_features.items()) +
+                        (list(params['meta_features'][fname].items()) if
+                         fname in params['meta_features'] else list({}.items()))))
+                if (type(custom_features) == list and 
+                    len(custom_features) == 1):
+                        custom_features = custom_features[0]
             else:
                 custom_features = {}
             

@@ -422,8 +422,11 @@ def featurize(
                             custom_script_path=custom_script_path,
                             path_to_csv=path_to_csv,
                             features_already_known=dict(
-                                timeseries_features.items() + 
-                                science_features.items()))
+                                list(timeseries_features.items()) + 
+                                list(science_features.items())))
+                        if (type(custom_features) == list and 
+                            len(custom_features) == 1):
+                                custom_features = custom_features[0]
                     else:
                         custom_features = {}
                     all_features = dict(
