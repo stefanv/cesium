@@ -318,10 +318,13 @@ def predict(
             custom_features = cft.generate_custom_features(
                 custom_script_path=custom_features_script, path_to_csv=None,
                 features_already_known=dict(
-                    timeseries_features.items() + science_features.items() + 
+                    list(timeseries_features.items()) + list(science_features.items()) + 
                     (
-                        meta_features[short_fname].items() if short_fname in 
-                        meta_features else {}.items())),ts_data=ts_data)
+                        list(meta_features[short_fname].items()) if short_fname in 
+                        meta_features else list({}.items()))),ts_data=ts_data)
+            if (type(custom_features) == list and 
+                len(custom_features) == 1):
+                    custom_features = custom_features[0]
         else:
             custom_features = {}
         features_dict = dict(
