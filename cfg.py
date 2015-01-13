@@ -17,7 +17,9 @@ DATA_PATH = os.path.join(PROJECT_PATH, "Data")
 UPLOAD_FOLDER = os.path.join(DATA_PATH, "flask_uploads")
 MODELS_FOLDER = os.path.join(DATA_PATH, "classifier_models")
 FEATURES_FOLDER = os.path.join(DATA_PATH, "extracted_features")
-
+CUSTOM_FEATURE_SCRIPT_FOLDER = os.path.join(
+    UPLOAD_FOLDER,
+    "custom_feature_scripts")
 ERR_LOG_PATH = os.path.join(
     DATA_PATH, "logs/errors_and_warnings.txt")
 
@@ -178,8 +180,6 @@ features_to_plot = [
     "freq1_harmonics_rel_phase_1"]
 
 
-
-
 def currently_running_in_docker_container():
     import subprocess
     proc = subprocess.Popen(["cat","/proc/1/cgroup"],stdout=subprocess.PIPE)
@@ -191,15 +191,16 @@ def currently_running_in_docker_container():
     return in_docker_container
 
 
-
 if not os.path.exists(PROJECT_PATH):
     print("cfg.py: Non-existing project path (%s) specified" % PROJECT_PATH)
     if currently_running_in_docker_container() == False:
         sys.exit(-1)
 
+
 for path in (DATA_PATH, UPLOAD_FOLDER, MODELS_FOLDER, FEATURES_FOLDER,
-             ERR_LOG_PATH):
-    path = os.path.dirname(path)
+             ERR_LOG_PATH, CUSTOM_FEATURE_SCRIPT_FOLDER):
+    if path == ERR_LOG_PATH:
+        path = os.path.dirname(path)
     if not os.path.exists(path):
         print("Creating %s" % path)
         os.makedirs(path)

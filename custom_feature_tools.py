@@ -584,9 +584,8 @@ def generate_custom_features(
         features_already_known['e'] = e
     if is_running_in_docker_container():
         all_new_features = execute_functions_in_order(
-                script_fname=custom_script_path.split("/")[-1],
-                features_already_known=features_already_known,
-                script_fpath=custom_script_path)
+                script_fpath=custom_script_path,
+                features_already_known=features_already_known)
     else:
         if docker_installed():
             print "Generating custom features inside docker container..."
@@ -596,9 +595,8 @@ def generate_custom_features(
         else:
             print "Generating custom features WITHOUT docker container..."
             all_new_features = execute_functions_in_order(
-                script_fname=custom_script_path.split("/")[-1],
-                features_already_known=features_already_known,
-                script_fpath=custom_script_path)
+                script_fpath=custom_script_path,
+                features_already_known=features_already_known)
     return all_new_features
 
 
