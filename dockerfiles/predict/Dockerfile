@@ -4,4 +4,4 @@ MAINTAINER Ari Crellin-Quick, a.crellinquick@gmail.com
 
 RUN cat /proc/1/cgroup
 
-ENTRYPOINT ["python","/home/mltp/docker_scripts/docker_predict.py"]
+ENTRYPOINT ["python","/home/mltsp/docker_scripts/docker_predict.py"]

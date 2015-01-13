@@ -24,18 +24,12 @@ def currently_running_in_docker_container():
     return in_docker_container
 
 
-
-
-
-
-
-
 import sys, os
 home_str = os.path.expanduser("~")
 import urllib
 import cStringIO
 if currently_running_in_docker_container()==True:
-    os.environ["TCP_DIR"] = "/home/mltp/TCP/"
+    os.environ["TCP_DIR"] = "/home/mltsp/TCP/"
 else:
     import cfg
     os.environ["TCP_DIR"] = os.path.join(cfg.TCP_INGEST_TOOLS_PATH, '../../')

@@ -33,7 +33,7 @@ except Exception as theError:
     DISCO_INSTALLED = False
 
 # For when run from inside Docker container:
-sys.path.append("/home/mltp/TCP/Software/ingest_tools")
+sys.path.append("/home/mltsp/TCP/Software/ingest_tools")
 sys.path.append(cfg.TCP_INGEST_TOOLS_PATH)
 
 import generate_science_features

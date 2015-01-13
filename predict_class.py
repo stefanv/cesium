@@ -21,6 +21,8 @@ import tarfile
 import glob
 from copy import deepcopy
 import custom_exceptions
+# For when run from inside Docker container:
+sys.path.append("/home/mltsp/TCP/Software/ingest_tools")
 sys.path.append(cfg.TCP_INGEST_TOOLS_PATH)
 
 import generate_science_features
@@ -45,7 +47,7 @@ def predict(
     newpred_file_path, model_name, model_type, featset_key,
     sepr=',', n_cols_html_table=5, features_already_extracted=False, 
     custom_features_script=None, metadata_file_path=None, 
-    in_docker_container=False):
+    in_docker_container=False, USE_DISCO=False):
     """Generate features from new TS data and perform model prediction.
     
     Generates features for new time series file, loads saved 
@@ -148,7 +150,7 @@ def predict(
         os.mkdir(tmp_dir_path)
         # disco may be installed in docker container, 
         # but it is not working yet, thus the "and not in_docker_container":
-        if DISCO_INSTALLED and not in_docker_container:
+        if DISCO_INSTALLED and not in_docker_container and USE_DISCO:
             big_features_and_tsdata_dict = (
                 parallel_processing.featurize_prediction_data_in_parallel(
                     newpred_file_path=newpred_file_path, 

@@ -11,26 +11,21 @@ HOME_DIRECTORY = os.path.expanduser("~")
 
 # Specify path to project directory:
 PROJECT_PATH = os.path.join(HOME_DIRECTORY, "mltsp")
-DATA_PATH = os.path.join(HOME_DIRECTORY, "Data")
-
+DATA_PATH = os.path.join(PROJECT_PATH, "Data")
 
 # Specify path to uploads, models, and feature folders:
-UPLOAD_FOLDER = os.path.join(DATA_PATH, "flask_mltsp/flask_uploads")
-MODELS_FOLDER = os.path.join(DATA_PATH, "flask_mltsp/classifier_models")
-FEATURES_FOLDER = os.path.join(DATA_PATH, "flask_mltsp/extracted_features")
+UPLOAD_FOLDER = os.path.join(DATA_PATH, "flask_uploads")
+MODELS_FOLDER = os.path.join(DATA_PATH, "classifier_models")
+FEATURES_FOLDER = os.path.join(DATA_PATH, "extracted_features")
 
+ERR_LOG_PATH = os.path.join(
+    DATA_PATH, "logs/errors_and_warnings.txt")
 
 # Specify path to generate_science_features script in TCP:
 TCP_INGEST_TOOLS_PATH = os.path.join(PROJECT_PATH, "TCP/Software/ingest_tools")
 
-
-ERR_LOG_PATH = os.path.join(
-    DATA_PATH, "flask_mltsp/logs/errors_and_warnings.txt")
-
-
 # Specify list of general time-series features to be used (must
 # correspond to those in lc_tools.LightCurve object attributes):
-
 features_list = [
     "n_epochs","avg_err","med_err","std_err", 
     "total_time","avgt","cads_std","avg_mag",

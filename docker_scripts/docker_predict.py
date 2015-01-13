@@ -5,7 +5,7 @@
 import subprocess
 import sys
 import os
-sys.path.append("/home/mltsp/mltsp")
+sys.path.append("/home/mltsp")
 import custom_feature_tools as cft
 import build_rf_model
 import predict_class
@@ -29,12 +29,14 @@ def predict():
         Human-readable status message.
     
     """
+    '''
     # start Disco
     status_code = call(["/disco/bin/disco", "nodaemon"])
     time.sleep(2)
-    
+    '''
+    USE_DISCO = False
     # load pickled ts_data and known features
-    with open("/home/mltsp/mltsp/copied_data_files/function_args.pkl","rb") as f:
+    with open("/home/mltsp/copied_data_files/function_args.pkl","rb") as f:
         function_args = cPickle.load(f)
     
     # ensure required files successfully copied into container:
@@ -78,7 +80,8 @@ def predict():
         features_already_extracted=function_args["features_already_extracted"],
         custom_features_script=function_args["custom_features_script"], 
         metadata_file_path=function_args["metadata_file"], 
-        in_docker_container=True)
+        in_docker_container=True,
+        USE_DISCO=USE_DISCO)
     
     with open("/tmp/%s_pred_results.pkl" % 
               function_args["prediction_entry_key"], "wb") as f:
