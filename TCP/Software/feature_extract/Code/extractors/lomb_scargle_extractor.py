@@ -1,4 +1,6 @@
-""" This module is a low-tech implementation of lomb_scargle_extractor using regular expressions """
+"""This module is a low-tech implementation of lomb_scargle_extractor using
+regular expressions
+"""
 
 from ..FeatureExtractor import FeatureExtractor
 from ..FeatureExtractor import InterExtractor
@@ -18,12 +20,12 @@ class lomb_scargle_extractor(InterExtractor):
     """
     internal_use_only = False
     active = True
-    extname = 'lomb_scargle' 
-    def extract(self):
+    extname = 'lomb_scargle'
 
+    def extract(self):
         src_dict = {}
-        src_dict['t'] = copy.copy(self.time_data) # 20100902 added the copy()
-        src_dict['m'] = copy.copy(self.flux_data) # 20100902 addde the copy()
+        src_dict['t'] = copy.copy(self.time_data)  # 20100902 added the copy()
+        src_dict['m'] = copy.copy(self.flux_data)  # 20100902 addde the copy()
         src_dict['m_err'] = copy.copy(self.rms_data) # 20100902 added the copy()
         
         
