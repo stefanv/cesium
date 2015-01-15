@@ -1712,19 +1712,21 @@ def newProject(
     
     """
     if proj_name is not None:
+        print "addl_users:", addl_users
         try:
-            proj_name = proj_name.strip()
-            proj_description = (proj_description.strip() if 
-                                type(proj_description) == str else "")
-            addl_users = (addl_users.strip() if 
-                          type(addl_users) == str else "")
-            user_email = (user_email.strip() if 
-                          type(user_email) == str else "")
+            proj_name = str(proj_name).strip()
+            proj_description = (str(proj_description).strip() if 
+                                proj_description is not None else "")
+            addl_users = (str(addl_users).strip() if 
+                          addl_users is not None else "")
+            user_email = (str(user_email).strip() if 
+                          user_email is not None else "")
             if user_email == "":
                 return jsonify({
                     "result":("Required parameter 'user_email' must be a "
                               "valid email address.")})
-        except:
+        except Exception as e:
+            raise(e)
             return jsonify({"result":"Invalid project title."})
         if proj_name == "":
             return jsonify({
@@ -1741,6 +1743,7 @@ def newProject(
         return jsonify({
             "result":("New project %s with key %s successfully created."
                       %(str(proj_name),str(new_projkey)))})
+
     if request.method == 'POST':
         proj_name = str(request.form["new_project_name"]).strip()
         if proj_name == "":
@@ -1749,18 +1752,16 @@ def newProject(
                           "non-whitespace character. Please try another name.")
             })
         proj_description = str(request.form["project_description"])
-        addl_users = str(request.form["addl_authed_users"]).split(',')
-        if addl_users == [''] or addl_users == [' ']:
+        addl_users = [
+            addl_user.strip() for addl_user in 
+            str(request.form["addl_authed_users"]).strip().split(',')]
+        if addl_users in ['', ' ']:
             addl_users = []
         if "user_email" in request.form:
-            user_email = str(request.form["user_email"])
+            user_email = str(request.form["user_email"]).strip()
         else:
-            user_email="auto" # will be determined through Flask 
-        
-        proj_description = (proj_description.strip() if 
-            type(proj_description) == str else "")
-        addl_users = (addl_users.strip() if type(addl_users) == str else "")
-        user_email = (user_email.strip() if type(user_email) == str else "")
+            user_email = "auto" # will be determined through Flask 
+        proj_description = str(proj_description).strip()
         if user_email == "":
             return jsonify({
                 "result":("Required parameter 'user_email' must be a valid "
