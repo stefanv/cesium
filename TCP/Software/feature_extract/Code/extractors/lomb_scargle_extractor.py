@@ -33,16 +33,17 @@ class lomb_scargle_extractor(InterExtractor):
         
         if len(self.time_data) == 0:
             self.ex_error(text="self.time_data of len()==0")
-        try:
-            obs = lightcurve.observatory_source_interface()
-            db_dictionary, cn_output = obs.lomb_code(src_dict['m'],
-                                           src_dict['m_err'],
-                                           src_dict['t'],
-                                 srcid=self.dic['input'].get('srcid',0))# 20110611 dstarr added just for lightcurve.py:lomb_code():<Plot the PSD(freq)> debug/allstars-plot use.
-        except Exception as theErr:
-            print theErr, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" 
-            self.ex_error(text="lomb_scargle_extractor::obs.lomb_code() except")
-            db_dictionary = {} # I think we dont get here since the above line excepts
+#        try:
+        obs = lightcurve.observatory_source_interface()
+        db_dictionary, cn_output = obs.lomb_code(src_dict['m'],
+                                       src_dict['m_err'],
+                                       src_dict['t'],
+                             srcid=self.dic['input'].get('srcid',0))# 20110611 dstarr added just for lightcurve.py:lomb_code():<Plot the PSD(freq)> debug/allstars-plot use.
+#        except Exception as theErr:
+#            raise(theErr)
+#            print theErr, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" 
+#            self.ex_error(text="lomb_scargle_extractor::obs.lomb_code() except")
+#            db_dictionary = {} # I think we dont get here since the above line excepts
 
         #import pdb; pdb.set_trace()
         #print

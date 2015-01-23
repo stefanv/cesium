@@ -3,3 +3,7 @@ flask/static/data/*classes.csv
 *~
 *.pyc
 *.bak
+*.c
+*.so
+*.gch
+build
