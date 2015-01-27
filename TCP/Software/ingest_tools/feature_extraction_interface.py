@@ -409,6 +409,7 @@ class Internal_Feature_Extractors:
         self.feature_dict = {}
         self.feature_ordered_keys = []
         for (feat_name,feat_dict) in self.features_tup_list:
+            feat_name = feat_name.replace('_extractor', '').strip()
             self.feature_ordered_keys.append(feat_name)
             self.feature_dict[feat_name] = feat_dict
 

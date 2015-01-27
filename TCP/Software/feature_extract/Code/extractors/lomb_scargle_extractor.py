@@ -4,7 +4,6 @@ regular expressions
 
 from ..FeatureExtractor import FeatureExtractor
 from ..FeatureExtractor import InterExtractor
-from common_functions.lomb_scargle import lomb
 from common_functions.pre_whiten import pre_whiten
 
 try:
