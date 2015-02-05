@@ -232,15 +232,12 @@ def build_model(
                     [sorted_class_list[i],float(class_probs[i])])
             results_arr.sort(key=itemgetter(1),reverse=True)
             top_class = results_arr[0][0]
-            print(results_arr)
-            print(obj['class'])
             if top_class == obj['class']:
                 cv_results_dict[obj['class']]['correct'] += 1
                 print("Correct.")
             else:
                 cv_results_dict[obj['class']]['incorrect'] += 1
                 print("Incorrect.")
-        print(cv_results_dict)
 
         for class_name in class_list:
             print(class_name,"percent correct:",\
@@ -432,9 +429,7 @@ def featurize(
                             else:
                                 features_successful.append(k)
 
-                        print("\n\n", "#"*80, "\n\n", len(features_successful), "features successfully generated: \n", features_successful, "\n")
                         print(len(features_failed), "features failed: \n", features_failed, "\n\n", "#"*80)
-                        ### end testing block
 
                     else:
                         science_features = {}
@@ -500,7 +495,6 @@ def featurize(
     line2 = ['class']
     for feat in sorted(features_extracted):
         if feat in features_to_use:
-            print("Using feature", feat)
             line.append(feat)
             if feat in features_to_plot:
                 line2.append(feat)
