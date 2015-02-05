@@ -106,7 +106,7 @@ class GeneralUtilityTestCase(WerkzeugTestCase):
             a.read_only = 'something'
         self.assert_raises(AttributeError, test_assign)
         assert a.number == 42
-        assert a.broken_number == None
+        assert a.broken_number is None
         assert a.date is None
         a.date = datetime(2008, 1, 22, 10, 0, 0, 0)
         assert a.environ['date'] == 'Tue, 22 Jan 2008 10:00:00 GMT'

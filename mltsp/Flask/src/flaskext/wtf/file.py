@@ -27,7 +27,7 @@ class FileField(_FileField):
         '''Return True iff self.data is a FileStorage with file data'''
         if not isinstance(self.data, FileStorage):
             return False
-        # filename == None => the field was present but no file was entered
+        # filename is None => the field was present but no file was entered
         # filename == '<fdopen>' is for a werkzeug hack:
         #   large file uploads will get stored in a temporary file on disk and
         #   show up as an extra FileStorage with name '<fdopen>'
