@@ -1,16 +1,3 @@
-from __future__ import print_function
-from __future__ import unicode_literals
-from __future__ import division
-from __future__ import absolute_import
-from builtins import range
-from builtins import open
-from builtins import str
-from builtins import dict
-from builtins import *
-from future import standard_library
-standard_library.install_aliases()
-# disco_test.py
-
 from operator import itemgetter
 #from rpy2.robjects.packages import importr
 #from rpy2 import robjects
@@ -718,7 +705,7 @@ def featurize_in_parallel_newtest(
 
 
     """
-    fname_class_list = list(fname_class_dict.iteritems())
+    fname_class_list = list(fname_class_dict.items())
     input_fname_list = all_fnames
     longfname_class_list = []
     if is_test:
