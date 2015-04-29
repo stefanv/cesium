@@ -10,7 +10,7 @@ echo '**********************************************'
 docker pull ubuntu
 
 base_images=`ls -d dockerfiles/base*`
-images=`ls -d dockerfiles/* | grep -v base_`
+images=`ls -d dockerfiles/* | grep -v base_ | grep -v drone`
 
 
 build_image () {
