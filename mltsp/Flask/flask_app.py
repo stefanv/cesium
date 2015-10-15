@@ -46,11 +46,11 @@ from ..version import version
 all_available_features_list = cfg.features_list_obs + cfg.features_list_science
 
 # Flask initialization
-app = Flask(__name__, static_folder=None)
-app.static_folder = 'static'
-app.add_url_rule(
-    '/static/<path:filename>', endpoint='static',
-    view_func=app.send_static_file)
+app = Flask(__name__, static_folder='static')
+#app.static_folder = 'static'
+#app.add_url_rule(
+#    '/static/<path:filename>', endpoint='static',
+#    view_func=app.send_static_file)
 
 app.config['SECRET_KEY'] = config['flask']['secret-key']
 app.config['STORMPATH_API_KEY_ID'] = \
@@ -84,7 +84,7 @@ stormpath_manager.init_app(app)
 
 app.config['UPLOAD_FOLDER'] = cfg.UPLOAD_FOLDER
 
-logging.basicConfig(filename=cfg.ERR_LOG_PATH, level=logging.WARNING)
+logging.basicConfig(filename=cfg.ERR_LOG_PATH, level=logging.INFO)
 
 # RethinkDB config:
 RDB_HOST = os.environ.get('RDB_HOST') or 'localhost'
