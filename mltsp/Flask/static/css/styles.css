@@ -1,5 +1,3 @@
-
-
 .centered .ui-tabs-nav {
     height: 2.25em;
     text-align: center;
@@ -9,13 +7,6 @@
     float: none;
     margin: 0em;
 }
-
-
-@font-face {
-    font-family: 'FFTisa'; 
-    src: url('/static/fonts/FFTisa/TisaPro-Regular.otf');
-}
-
 
 
 th{
@@ -58,10 +49,6 @@ th{
 	font-size:1.0em
 }
 
-body{
-	font-family: Verdana,FFTisa,sans-serif,Arial !important; 
-	font-size: 9pt; 
-}
 
 h2{
 	

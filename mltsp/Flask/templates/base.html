@@ -1,87 +1,145 @@
 <!doctype html>
-<head><title>{% block title %}ML Time-Series Platform {% block subtitle %} {% endblock %} {% endblock %}</title>
+<head>
+  <title>
+    {% block title %}
+    ML Time-Series Platform
+    {% block subtitle %}
+    {% endblock %}
+    {% endblock %}
+  </title>
 
 
-{% block script_links %}
-<link rel="stylesheet" type='text/css' href="/static/bootstrap/css/bootstrap.less">
+  <script>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    $STATIC_ROOT = "{{ url_for('index') }}./static/";
+  </script>
 
+  {% block script_links %}
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="/static/css/ion/js/jquery.min.js"></script>
+    <script src="/static/css/ion/js/skel.min.js"></script>
+    <script src="/static/css/ion/js/skel-layers.min.js"></script>
+    <script src="/static/css/ion/js/init.js"></script>
+    <noscript>
+      <link rel="stylesheet" href="/static/css/ion/css/skel.css" />
+      <link rel="stylesheet" href="/static/css/ion/css/style.css" />
+      <link rel="stylesheet" href="/static/css/ion/css/style-xlarge.css" />
+    </noscript>
 
+    <script type="text/javascript" src="/static/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="/static/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/js/ajaxfileupload.js"></script>
 
-<script type="text/javascript" src="/static/js/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="/static/js/jquery.form.js"></script>
-<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
-<script type="text/javascript" src="/static/js/jquery.tablesorter.js"></script>
-<script type="text/javascript" src="/static/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
-<script type="text/javascript" src="/static/js/ajaxfileupload.js"></script>
-<script type="text/javascript" src="/static/js/d3.v3.min.js"></script>
-<script type="text/javascript" src="/static/js/nv.d3.js"></script>
-<script type="text/javascript" src="/static/js/jquery.ba-outside-events.js"></script>
-<script type="text/javascript" src="/static/js/flot/jquery.flot.js"></script>
-<script type="text/javascript" src="/static/js/flot/jquery.flot.errorbars.js"></script>
-<script type="text/javascript" src="/static/js/flot/jquery.flot.selection.js"></script>
-<script type="text/javascript" src="/static/js/json2.js"></script>
-<script type="text/javascript" src="/static/js/jcanvas.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="/static/js/bokeh-0.4.2.js"></script>
-<script type="text/javascript" src="/static/js/scripts.js"></script>
+  <script type="text/javascript" src="/static/js/d3.v3.min.js"></script>
+  <script type="text/javascript" src="/static/js/nv.d3.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.ba-outside-events.js"></script>
+  <script type="text/javascript" src="/static/js/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="/static/js/flot/jquery.flot.errorbars.js"></script>
+  <script type="text/javascript" src="/static/js/flot/jquery.flot.selection.js"></script>
+  <script type="text/javascript" src="/static/js/json2.js"></script>
+  <script type="text/javascript" src="/static/js/jcanvas.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="/static/js/bokeh-0.4.2.js"></script>
+  <script type="text/javascript" src="/static/js/scripts.js"></script>
 
-<LINK href="/static/jquery-ui-1.10.4/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
-<LINK href="/static/jquery-ui-1.10.4/themes/base/jquery.ui.tooltip.css" rel="stylesheet" type="text/css">
-<LINK href="/static/css/bokeh-0.4.2.css" rel="stylesheet" type="text/css">
-<LINK href="/static/css/styles.css" rel="stylesheet" type="text/css">
+  <link href="/static/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/bokeh-0.4.2.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css">
+{% endblock %}
 
+<script type="text/javascript">
+  $(function() {
+    $( "#tabs" ).tabs({
+      collapsible: true
+    });
+  });
 
+  {% block script %}
+  {% endblock %}
+</script>
+
+</head>
+
+<body id="top">
+
+  <!-- Header -->
+  <header id="header" class="skel-layers-fixed">
+    <h1>
+      <span style="font-size: 120%;">匕</span> 
+      <a href="#">Machine Learning Time-Series Platform&nbsp;</a></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="http://mltsp.io"><i class="fa fa-home"></i> &nbsp;Home</a></li>
+          <li><a href="https://github.com/mltsp/mltsp"><i class="fa fa-github"></i> &nbsp;Source</a></li>
+          <li><a href="http://mltsp.readthedocs.org"><i class="fa fa-book"></i> &nbsp;Documentation</a></li>
+        </ul>
+      </nav>
+    </header>
+
+{% block content %}
+
+  {% block tabs %}
+  {% endblock %}
+
+  {% block results %}
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+  <footer id="footer">
+    <div class="container">
+      <div class="row double">
+        <div class="12u">
+
+          <div class="row collapse-at-2">
+
+            <div class="4u">
+              <h3>About</h3>
+              <ul class="alt">
+                <li><a href="http://astro.berkeley.edu/">UC Berkeley Astronomy</a></li>
+                <li><a href="http://www.stat.berkeley.edu/">UC Berkeley Statistics</a></li>
+              </ul>
+            </div>
+
+            <div class="4u">
+              <h3>Related</h3>
+              <ul class="alt">
+                <li><a href="http://dotastro.org/">DotAstro</a></li>
+                <li><a href="http://cftd.info/">Center For Time-Domain Informatics</a></li>
+                <li><a href="http://www.bigmacc.info/">Machine-learned ASAS Classification Catalog</a></li>
+              </ul>
+            </div>
+
+            <div class="4u">
+              <h2>Links</h2>
+              <ul class="alt">
+                <li><a href='http://timemachine.iic.harvard.edu/'>Harvard TSC</a></li>
+                <li><a href="http://simbad.u-strasbg.fr/simbad/">SIMBAD</a></li>
+                <li><a href="http://www.sai.msu.su/gcvs/gcvs/index.htm">GCVS
+              </ul>
+            </div>
+
+         </div>
+      </div>
+
+      </div>
+      <ul class="copyright">
+        <li>&copy; MLTSP team. All rights reserved.</li>
+        <li>CSS: <a href="http://templated.co">TEMPLATED</a></li>
+        <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+      </ul>
+    </div>
+  </footer>
 
 {% endblock %}
 
 
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-        
-        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-        
-        $(function() {
-                $( "#tabs" ).tabs({
-                        collapsible: true
-                });
-        });
-        
-        {% block script %}
-        
-        {% endblock %}
-</script>
-</head>
-
-<body>
-
-        {% block content %}
-
-                {% block tabs %}
-
-                {% endblock %}
-
-
-                {% block results %}
-
-                {% endblock %}
-
-                {% block footer %}
-                
-                {% endblock %}
-
-        {% endblock %}
-
-        {% block bodyscript %}
-
-        {% endblock %}
-
+  {% block bodyscript %}
+  {% endblock %}
 
 </body>
 </html>
