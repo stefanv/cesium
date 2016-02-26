@@ -26,6 +26,7 @@ import uuid
 import numpy as np
 from sklearn.externals import joblib
 import xarray as xr
+import jwt
 
 import yaml
 if cfg['testing']['disable_auth']:
@@ -172,6 +173,13 @@ def excepthook_replacement(exctype, value, tb):
     print("Value:", value)
     print("Traceback:", tb, "\n\n")
     logging.exception("Error occurred in flask_app.py")
+
+
+@app.route('/socket_auth_token', methods=['GET'])
+@stormpath.login_required
+def socket_auth_token():
+    return jwt.encode({'username': stormpath.user.email},
+                      app.config['SECRET_KEY'])
 
 
 @app.route('/check_job_status/', methods=['POST', 'GET'])

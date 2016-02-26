@@ -5,7 +5,11 @@
 {% block script_links %}
 <link rel="stylesheet" type='text/css' href="/static/bootstrap/css/bootstrap.less">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
 
+<script src="{{ url_for('static', filename='js/cookies.js')}}"></script>
+<script src="{{ url_for('static', filename='js/user.js')}}"></script>
+<script src="{{ url_for('static', filename='js/websocket.js')}}"></script>
 
 <script type="text/javascript" src="/static/js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="/static/js/jquery.form.js"></script>
